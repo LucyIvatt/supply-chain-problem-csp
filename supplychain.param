@@ -1,0 +1,10 @@
+language ESSENCE' 1.0
+
+$ Number of shops, and their demands.
+letting nShops = 2
+letting demands = [20, 25]
+
+$ Number of suppliers, their package sizes, and their package costs.
+letting nSuppliers = 3
+letting packageSize = [10, 10, 5]
+letting packageCost= [6, 4, 3]
