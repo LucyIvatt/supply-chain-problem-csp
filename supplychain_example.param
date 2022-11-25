@@ -8,3 +8,5 @@ $ Number of suppliers, their package sizes, and their package costs.
 letting nSuppliers = 3
 letting packageSize = [10, 10, 5]
 letting packageCost= [6, 4, 3]
+
+letting excessStockLimit = 5
