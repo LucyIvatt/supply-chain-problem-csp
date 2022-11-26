@@ -9,5 +9,4 @@ letting nSuppliers = 4
 letting packageSize = [2, 2, 5, 5]
 letting packageCost= [10, 6, 16, 18]
 
-$ The amount of excess stock that each store can store
 letting excessStockLimit = 5

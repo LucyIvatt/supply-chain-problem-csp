@@ -1,19 +1,30 @@
 language ESSENCE' 1.0
 
+$ PARAMETERS
+$ Number of shops, and their demands.
 given nShops: int(1..)
-
 given demands : matrix indexed by [int(1..nShops)] of int(1..)
-given packageSize : matrix indexed by [int(1..nSuppliers)] of int(1..) $ assuming no empty packages
-given packageCost : matrix indexed by [int(1..nSuppliers)] of int(0..) $ in case packages can be free
 
+$ Number of suppliers, their package sizes, and their package costs.
+given nSuppliers: int(1..)
+given packageSize : matrix indexed by [int(1..nSuppliers)] of int(1..) $ Assumes no empty packages
+given packageCost : matrix indexed by [int(1..nSuppliers)] of int(1..) $ Assumes no free packages
+
+$ The amount of excess stock that each store can store
 given excessStockLimit: int(1..)
 
-given nSuppliers: int(1..)
+$ CONSTANTS
+$ Array containing the maximum number of orders each shop will ever need to make to fufill their demands.
+$ Largest of these values is also defined and used to bound the solution matrix.
+letting maxOrderByShop be [demands[shop] / min(packageSize) | shop: int(1..nShops)]
+letting maxOrderNum be max(maxOrderByShop)
 
-letting maxOrderNum be max(demands) / min(packageSize)
-
+$ VARIABLE
+$ Explicit representation of the number of orders made with each supplier by each shop.
 find allocations: matrix indexed by [int(1..nShops), int(1..nSuppliers)] of int(0..maxOrderNum)
 
+$ OBJECTIVE FUNCTIONr
+$ Minimises the sum of the costs of all deliveries to all shops  
 minimising(
     sum([
         allocations[shop, supplier] * packageCost[supplier] 
@@ -25,8 +36,17 @@ $ CONSTRAINTS
 such that
 
 forAll shop: int(1..nShops) .
+    $ Each shop doesn't make more than the maximum number of orders neccessary to fufill demand (Shops demand / smallest package size)
+    $ Used to reduce the search space and time required to find a solution
+    sum([allocations[shop, supplier] | supplier: int(1..nSuppliers)]) <= maxOrderByShop[shop],
+
+forAll shop: int(1..nShops) .
+    $ Each shop must have enough stock to meet its demand
     sum([allocations[shop, supplier]*packageSize[supplier] | supplier: int(1..nSuppliers)]) >= demands[shop],
 
 forAll shop: int(1..nShops) .
+    $ Each shop must not have more stock than its demand plus the excess stock limit
     sum([allocations[shop, supplier]*packageSize[supplier] | supplier: int(1..nSuppliers)]) <= demands[shop] + excessStockLimit
+
+
 
