@@ -4,9 +4,9 @@ given nShops: int(1..)
 
 given demands : matrix indexed by [int(1..nShops)] of int(1..)
 given packageSize : matrix indexed by [int(1..nSuppliers)] of int(1..) $ assuming no empty packages
-given packageCost : matrix indexed by [int(1..nSuppliers)] of int(0..) $ in case packages can be free
+given packageCost : matrix indexed by [int(1..nSuppliers)] of int(1..) $ in case packages can be free
 
-given excessStockLimit: int(1..)
+given excessStockLimit: int(0..)
 
 given nSuppliers: int(1..)
 
@@ -16,8 +16,7 @@ find allocations: matrix indexed by [int(1..nShops), int(1..nSuppliers)] of int(
 
 minimising(
     sum([
-        allocations[shop, supplier] * packageCost[supplier] 
-        | shop : int(1..nShops), supplier: int(1..nSuppliers)
+        allocations[shop, supplier] * packageCost[supplier] | shop : int(1..nShops), supplier: int(1..nSuppliers)
     ])
 )
 
