@@ -16,7 +16,7 @@ given excessStockLimit: int(1..)
 $ CONSTANTS
 $ Array containing the maximum number of orders each shop will ever need to make to fufill their demands.
 $ Largest of these values is also defined and used to bound the solution matrix.
-letting maxOrderByShop be [demands[shop] / min(packageSize) | shop: int(1..nShops)]
+letting maxOrderByShop be [(demands[shop] / min(packageSize)) + 1 | shop: int(1..nShops)]
 letting maxOrderNum be max(maxOrderByShop)
 
 $ VARIABLE

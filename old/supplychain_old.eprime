@@ -10,7 +10,7 @@ given excessStockLimit: int(0..)
 
 given nSuppliers: int(1..)
 
-letting maxOrderNum be max(demands) / min(packageSize)
+letting maxOrderNum be (max(demands) / min(packageSize))+1
 
 find allocations: matrix indexed by [int(1..nShops), int(1..nSuppliers)] of int(0..maxOrderNum)
 
