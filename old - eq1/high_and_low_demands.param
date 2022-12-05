@@ -1,0 +1,13 @@
+language ESSENCE' 1.0
+
+$ Number of shops, and their demands.
+letting nShops = 5
+letting demands = [42, 5, 20, 10, 60]
+
+$ Number of suppliers, their package sizes, and their package costs.
+letting nSuppliers = 3
+letting packageSize = [2, 2, 5]
+letting packageCost= [10, 6, 16]
+
+$ The amount of excess stock that each store can store
+letting excessStockLimit = 5

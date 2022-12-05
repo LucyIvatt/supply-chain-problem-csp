@@ -11,7 +11,7 @@ given packageSize : matrix indexed by [int(1..nSuppliers)] of int(1..) $ Assumes
 given packageCost : matrix indexed by [int(1..nSuppliers)] of int(1..) $ Assumes no free packages
 
 $ The amount of excess stock that each store can store
-given excessStockLimit: int(1..)
+given excessStockLimit: int(0..)
 
 $ CONSTANTS
 $ Array containing the maximum number of orders each shop will ever need to make to fufill their demands.
