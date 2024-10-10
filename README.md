@@ -16,3 +16,5 @@ The goal is to ensure every shop receives enough units to meet its demand while 
 | Case 4 (Large difference in shop demands) | 7,101,243           | 10.7188                 |
 | Case 5 (Most Challenging)              | 350,766,457         | 268.859                 |
 | Test Instance (from paper)             | 10,323,476          | 10.1719                 |
+
+_All code submitted as part of a master module at the University of York - Constraint Programming_
